@@ -5,7 +5,8 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
-#define SERVER_IP "192.168.0.103"  
+//#define SERVER_IP "192.168.0.103"  
+#define SERVER_IP "127.0.0.1"
 #define PORT 8080
 
 int main(){
@@ -37,7 +38,9 @@ int main(){
     printf("%s\n", recieved_msg);
     
     char message[] = "Hi, server!";
-    if(send(my_socket, message, strlen(message), 0)) {
+    int sended_bytes = send(my_socket, message, strlen(message), 0);
+    printf("%d == %d\n", sended_bytes, strlen(message));
+    if(sended_bytes == -1) {
         printf("I can't send message!");
         exit(EXIT_FAILURE);
     }

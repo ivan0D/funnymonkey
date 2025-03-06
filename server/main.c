@@ -58,7 +58,8 @@ int main(){
         send(client, message, strlen(message), 0);
         
         char recieved_msg[256];
-        recv(client, recieved_msg, strlen(recieved_msg), 0);
+        recv(client, recieved_msg, sizeof(recieved_msg) - 1, 0);
+        recieved_msg[sizeof(recieved_msg) - 1] = '\0';
         printf("%s\n", recieved_msg);
     
     }
